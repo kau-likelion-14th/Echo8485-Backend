@@ -1,24 +1,38 @@
 spring:
   config:
     import: optional:file:.env[.properties]
-  profiles :
-    active : local
-
+  profiles:
+    active: local
   servlet:
-    multipart :
-      enabled : true
-      max-file-size : 50MB
-      max-request-size : 50MB
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
 
-  server:
-    port: ${PORT:8080}
-    #Swagger
-    springdoc:
-      api-docs:
-        path: /v3/api-docs
-      swagger-ui:
-        path: /swagger-ui/index.html
-        display-request-duration: true
-        operations-sorter: method
+server:
+  port: ${PORT:8080}
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui/index.html
+    display-request-duration: true
+    operations-sorter: method
 
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: ${LOCAL_DB_URL}
+    username: ${LOCAL_DB_USERNAME}
+    password: ${LOCAL_DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
