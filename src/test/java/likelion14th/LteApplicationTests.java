@@ -1,4 +1,4 @@
-package likelion14th.lte;
+package likelion14th;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
