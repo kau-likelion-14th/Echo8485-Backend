@@ -7,15 +7,6 @@ import org.springframework.http.HttpStatus;
 // API 응답 상세 정보
 @Getter
 @Builder
-public class ReasonDTO implements BaseCode package likelion14th.lte.global.api;
-
-import lombok.Builder;
-import lombok.Getter;
-import org.springframework.http.HttpStatus;
-
-// API 응답 상세 정보
-@Getter
-@Builder
 public class ReasonDTO implements BaseCode {
 
     private HttpStatus httpStatus; // HTTP 상태 코드

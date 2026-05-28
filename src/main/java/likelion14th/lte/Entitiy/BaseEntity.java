@@ -1,4 +1,4 @@
-package likelion14th.lte.entity;
+package likelion14th.lte.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -9,7 +9,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-
 
 @MappedSuperclass
 // 1. "나는 진짜 테이블이 아니라, 내 자식 클래스에게 아래의 변수(컬럼)들을 물려주기만 할 거야"라는 뜻입니다.
