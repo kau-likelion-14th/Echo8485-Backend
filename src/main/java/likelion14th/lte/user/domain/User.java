@@ -1,9 +1,15 @@
 package likelion14th.lte.user.domain;
 
 import jakarta.persistence.*;
-import likelion14th.lte.Entity.BaseEntity;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import likelion14th.lte.global.entity.BaseEntity;
+import likelion14th.lte.follow.entity.Follow;
 
+import java.util.ArrayList;
+import java.util.List;
 @Entity
 @Getter
 // [Q1. @NoArgsConstructor는 매개변수가 없는 기본 생성자를 만듭니다.
@@ -38,12 +44,20 @@ public class User extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String s3ImageKey;
+    @OneToMany(mappedBy = "toUser",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Follow> followers;
+
+    @OneToMany(mappedBy = "fromUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Follow> followings;
+
 
     @Builder(access = AccessLevel.PUBLIC)
     private User(String username, String introduction, String userTag) {
         this.username = username;
         this.userTag = userTag;
         this.introduction = introduction;
+        this.followers = new ArrayList<>();
+        this.followings = new ArrayList<>();
     }
 
     // [Q3. @Setter를 위 @Getter 처럼 사용하면 모든 맴버들에 setIntruduction() 같은 setter 메서드가 생성됩니다. 하지만 왜 @Setter를 쓰지않고 updateIntroduction() 이라는 명확한 메서드를 만든 객체지향적인 이유는 무엇인가요?]

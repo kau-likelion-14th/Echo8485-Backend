@@ -3,7 +3,7 @@ package likelion14th.lte.user.service;
 import likelion14th.lte.global.api.ErrorCode;
 import likelion14th.lte.global.exception.GeneralException;
 import likelion14th.lte.user.domain.User;
-import likelion14th.lte.user.dto.request.CreateTestUserRequest;
+import likelion14th.lte.user.dto.request.CreateUserRequest;
 import likelion14th.lte.user.dto.response.UserProfileResponse;
 import likelion14th.lte.user.repository.UserRepository;
 import lombok.AccessLevel;
@@ -39,7 +39,7 @@ public class UserProfileService {
     }
 
     @Transactional
-    public UserProfileResponse createTestUser(CreateTestUserRequest request) {
+    public UserProfileResponse createTestUser(CreateUserRequest request) {
 
         // [Q7. 일반적인 생성자 new User(name, intro, tag) 방식을 쓰지 않고,
         // User.builder()...build() 라는 '빌더 패턴'을 사용하여 객체를 조립했을 때 얻는 장점은 무엇인가요?]

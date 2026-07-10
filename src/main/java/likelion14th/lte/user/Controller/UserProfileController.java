@@ -3,7 +3,7 @@ package likelion14th.lte.user.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import likelion14th.lte.global.api.ApiResponse;
 import likelion14th.lte.global.api.SuccessCode;
-import likelion14th.lte.user.dto.request.CreateTestUserRequest;
+import likelion14th.lte.user.dto.request.CreateUserRequest;
 import likelion14th.lte.user.dto.response.UserProfileResponse;
 import likelion14th.lte.user.service.UserProfileService;
 import lombok.AccessLevel;
@@ -37,7 +37,7 @@ public class UserProfileController {
             // 답변: 프론트가 {"username":"...", "userTag":"..."} 형태의 JSON을 Body에 실어 보냄.
             //       @RequestBody가 "Body 내용을 이 매개변수 객체로 변환하라"고 Spring에 알려 줌.
             //       Spring은 JSON 키와 DTO 필드명을 매칭해 값을 채우는 역직렬화를 수행함.
-            @RequestBody CreateTestUserRequest request
+            @RequestBody CreateUserRequest request
     ) {
         UserProfileResponse response = userProfileService.createTestUser(request);
         return ApiResponse.onSuccess(SuccessCode.CREATED, response);
