@@ -13,7 +13,6 @@ import likelion14th.lte.todo.dto.response.TodoListResponse;
 import likelion14th.lte.todo.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
