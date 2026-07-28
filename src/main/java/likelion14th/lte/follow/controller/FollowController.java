@@ -61,7 +61,7 @@ public class FollowController {
     public ApiResponse<List<FollowUserResponse>> getFollowings(
             @RequestParam Long userId
     ) {
-        git push origin develop        List<FollowUserResponse> response = followService.getFollowings(userId);
+        List<FollowUserResponse> response = followService.getFollowings(userId);
         return ApiResponse.onSuccess(SuccessCode.FOLLOW_FOLLOWINGS_SUCCESS, response);
     }
 
