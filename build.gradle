@@ -29,6 +29,8 @@ dependencies {
 
 	//db
 	runtimeOnly 'com.mysql:mysql-connector-j'
+	// local-h2 프로파일 전용: MySQL 없이 앱을 띄워 Swagger 등을 확인할 때 사용
+	runtimeOnly 'com.h2database:h2'
 
 	//validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation'

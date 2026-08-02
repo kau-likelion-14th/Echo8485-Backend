@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import likelion14th.lte.global.entity.BaseEntity;
 import likelion14th.lte.follow.entity.Follow;
+import likelion14th.lte.statistic.entity.Statistic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,15 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "fromUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Follow> followings;
 
+    /**
+     * User 와 Statistic 은 1:1 관계이며, ERD 상 USER 테이블이 statistic_id 외래 키를 가지므로
+     * User 가 연관관계의 주인이다.
+     * cascade = ALL 로 userRepository.save(user) 한 번에 Statistic 과 StatWeek 까지 함께 저장된다.
+     */
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
+    @JoinColumn(name = "statistic_id", nullable = false, unique = true)
+    private Statistic statistic;
+
 
     @Builder(access = AccessLevel.PUBLIC)
     private User(String username, String introduction, String userTag) {
@@ -58,6 +68,8 @@ public class User extends BaseEntity {
         this.introduction = introduction;
         this.followers = new ArrayList<>();
         this.followings = new ArrayList<>();
+        // User 가 생성되는 유일한 통로이므로, 여기서 기본 통계 데이터를 함께 만든다.
+        this.statistic = Statistic.create();
     }
 
     // [Q3. @Setter를 위 @Getter 처럼 사용하면 모든 맴버들에 setIntruduction() 같은 setter 메서드가 생성됩니다. 하지만 왜 @Setter를 쓰지않고 updateIntroduction() 이라는 명확한 메서드를 만든 객체지향적인 이유는 무엇인가요?]
